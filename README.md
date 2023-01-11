@@ -1,3 +1,5 @@
 # php-uni-project-DMD
 
-Project uses TailwindCSS -> make sure to run npm i and npm run build:css
+Project uses **Tailwind CSS**.
+
+Make sure to run `npm i` and `npm run build:css` for the project to load as intended.
