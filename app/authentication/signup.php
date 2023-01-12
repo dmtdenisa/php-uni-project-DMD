@@ -10,11 +10,9 @@
 </head>
 
 <body>
-  <?php
-
-  ?>
-  <main class="flex flex-col items-center justify-center h-screen">
-    <h1 class="text-xl font-sans font-medium">Sign Up</h1>
+  <?php include "../main-app/header.php" ?>
+  <main class="flex flex-col items-center h-screen">
+    <h1 class="text-xl font-sans font-medium mt-32">Sign Up</h1>
     <form method="post" action="../includes/signup.inc.php">
       <div class="w-96 p-6 rounded">
         <div class="flex flex-col items-center gap-6">
@@ -30,7 +28,8 @@
             <label for="passwordInput">Password</label>
             <input type="password" name="password" id="passwordInput" placeholder="Choose a strong password" class="w-80 border rounded-xl border-slate-200 p-2 hover:border-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400">
           </div>
-          <button type="submit" name="submitButton" class="w-50 hover:bg-indigo-900 hover:text-slate-100 border border-transparent rounded-xl pt-2 pb-2 pl-6 pr-6">Create new account</button>
+          <button type="submit" name="submitButton" class="w-50 bg-primary hover:bg-secondary text-slate-100 border border-transparent rounded-xl pt-2 pb-2 pl-6 pr-6">Create new account</button>
+          <span class="text-sm">Already have an account? <a href="login.php" class="text-secondary">Log In</a></span>
         </div>
       </div>
     </form>
