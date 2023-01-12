@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once '../includes/dbh.inc.php';
+$userID = $_SESSION["userID"];
+$sql = "SELECT * FROM articles WHERE userId= '$userID';";
+$result = mysqli_query($connection, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en" data-theme="mytheme">
@@ -17,47 +21,36 @@ session_start();
 <body>
     <main class="h-screen">
         <div class="cards-container flex flex-row flex-wrap gap-x-11 gap-y-16 pt-20 px-40">
-            <div class="card w-64 h-52 flex flex-col cursor-pointer hover:scale-105">
-                <div class="card-image h-2/3 bg-accent border rounded-t-2xl border-none">
-                    <img src="https://bloody-disgusting.com/wp-content/uploads/2017/09/salems-lot.jpg" class="border rounded-t-2xl border-none">
-                </div>
-                <div class="card-description h-1/3 bg-white border border-hidden rounded-b-2xl flex flex-col">
-                    <div class="card-title h-1/3 w-full border-hidden pt-2 px-4 text-xs">Salem's Lot</div>
-                    <div class="card-info h-2/3 border rounded-b-2xl border-hidden flex flex-row">
-                        <div class="card-rating flex flex-row w-2/3 items-center pl-4">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                        </div>
-                        <div class="card-watched w-1/3 flex flex-row items-center justify-end pr-4">
-                            <span class="border rounded-full w-5 h-5 border-none"><img src="../assets/hidden.png" class=" h-5 w-5"></span>
-                        </div>
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "
+                    <div class='card w-64 h-52 flex flex-col cursor-pointer hover:scale-105'>
+                    <div class='card-image h-2/3 border rounded-t-2xl bg-slate-50 border-none flex grow-0 justify-center items-center'>
+                        <img src='../assets/newspaper.png' class='border rounded-t-2xl border-none h-20'>
                     </div>
-                </div>
-            </div>
+                    <div class='card-description h-1/3 bg-white border border-hidden rounded-b-2xl flex flex-col'>
+                        <div class='card-title h-1/3 w-full border-hidden pt-2 px-4 text-xs'> <p class='h-full w-full whitespace-nowrap text-ellipsis overflow-hidden'>" . $row["title"] . "</p></div>
+                        <div class='card-info h-2/3 border rounded-b-2xl border-hidden flex flex-row'>
+                            <div class='card-watched flex flex-row w-full items-center justify-end pr-4'>
+                                <span class='border rounded-full w-5 h-5 border-none'>";
+                    if ($row["readDate"] != NULL) {
+                        echo "<img src='../assets/view.png' class=' h-5 w-5'></span>";
+                    } else {
+                        echo "<img src='../assets/hidden.png' class=' h-5 w-5'></span>";
+                    };
 
-            <div class="card w-64 h-52 flex flex-col">
-                <div class="card-image h-2/3 bg-accent border rounded-t-2xl border-none">
-                    <img src="https://media.timeout.com/images/103625898/image.jpg" class="border rounded-t-2xl border-none">
-                </div>
-                <div class="card-description h-1/3 bg-white border border-hidden rounded-b-2xl flex flex-col">
-                    <div class="card-title h-1/3 w-full border-hidden pt-2 px-4 text-xs">The Wailing</div>
-                    <div class="card-info h-2/3 border rounded-b-2xl border-hidden flex flex-row">
-                        <div class="card-rating flex flex-row w-2/3 items-center pl-4">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                            <img class="w-5 h-5" src="../assets/star.png">
-                        </div>
-                        <div class="card-watched w-1/3 flex flex-row items-center justify-end pr-4">
-                            <span class="border rounded-full w-5 h-5 border-none"><img src="../assets/eye.png" class=" h-5 w-5"></span>
+                    echo "</div>
                         </div>
                     </div>
                 </div>
-            </div>
+                    ";
+                };
+            };
+
+            ?>
+
+
         </div>
     </main>
 </body>
