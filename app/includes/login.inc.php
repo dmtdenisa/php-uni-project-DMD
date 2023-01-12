@@ -16,6 +16,7 @@ $user = logIn($connection, $username, $password);
 if ($user) {
     session_start();
     $_SESSION["user"] = $user["username"];
+    $_SESSION["userID"] = $user["userId"];
     header("location: ../main-app/dashboard.php?user=$username");
     exit();
 } else {

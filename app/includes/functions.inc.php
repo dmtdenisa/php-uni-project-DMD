@@ -44,4 +44,4 @@ function logIn($connection, $username, $password)
     } else {
         return false;
     };
-}
+};
