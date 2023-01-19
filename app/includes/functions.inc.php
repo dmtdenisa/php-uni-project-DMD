@@ -45,3 +45,19 @@ function logIn($connection, $username, $password)
         return false;
     };
 };
+
+function addMovie($connection, $user, $data) {
+    $title = $data["title"];
+    $director = $data["director"];
+    $releaseYear = $data["releaseYear"];
+    $genre = $data["genre"];
+    $watchedDate = $data["watchedDate"];
+    $rating = $data["rating"];
+    $comment = $data["comment"];
+    $pictureLink = $data["pictureLink"];
+    $sql = "INSERT INTO `movies`(`title`, `director`, `releaseYear`, `genre`, `watchedDate`, `rating`, `comment`, `userId`, `pictureLink`) VALUES ('$title','$director','$releaseYear','$genre','$watchedDate',$rating,'$comment','$user','$pictureLink')";
+
+    $result = mysqli_query($connection, $sql);
+
+    return $result;
+}

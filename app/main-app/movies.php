@@ -19,8 +19,11 @@ $result = mysqli_query($connection, $sql);
 <?php include_once("header.php") ?>
 
 <body>
-    <main class="h-screen">
-        <div class="cards-container flex flex-row flex-wrap gap-x-11 gap-y-16 pt-20 px-40">
+    <main>
+    <div class=" pt-20 pb-3 flex flex-row justify-end w-full h-fit px-40">
+            <a href="./add-movie.php" class=" bg-warning shadow-inner border rounded-xl w-32 h-10 flex items-center justify-center font-extrabold text-xl hover:scale-105"><img class=" h-4" src="../assets/add.png"></a>
+        </div>
+        <div class="cards-container flex flex-row flex-wrap gap-x-11 gap-y-16 px-40">
             <?php
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {

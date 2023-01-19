@@ -19,7 +19,7 @@ $result = mysqli_query($connection, $sql);
 <?php include_once("header.php") ?>
 
 <body>
-    <main class="h-screen">
+    <main>
         <div class="cards-container flex flex-row flex-wrap gap-x-11 gap-y-16 pt-20 px-40">
             <?php
             if (mysqli_num_rows($result) > 0) {
